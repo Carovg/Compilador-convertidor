@@ -12,10 +12,10 @@
    <children>
       <ImageView fitHeight="342.0" fitWidth="432.0" layoutX="68.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Imagenes/FP.PNG" />
+            <Image url="@../../Imagenes/FP.PNG" />
          </image>
       </ImageView>
-      <ProgressBar fx:id="prog" layoutX="160.0" layoutY="247.0" prefHeight="19.0" prefWidth="248.0" progress="0.0" styleClass="track" stylesheets="@estilos.css" />
+      <ProgressBar fx:id="prog" layoutX="160.0" layoutY="247.0" prefHeight="19.0" prefWidth="248.0" progress="0.0" styleClass="track" stylesheets="@../estilos.css" />
       <Label fx:id="lblprog" layoutX="272.0" layoutY="276.0" text="0%" textFill="#fcfcfc">
          <font>
             <Font size="18.0" />

@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sun.misc.Launcher;
+import sample.Controllers.Splash;
 
 public class Main extends Application {
     public static int duracion=20000;
@@ -22,7 +22,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("principal.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Views/principal.fxml"));
         primaryStage.setTitle("Numerics");
         primaryStage.setScene(new Scene(root, 970, 600));
         primaryStage.show();
