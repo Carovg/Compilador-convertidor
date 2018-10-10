@@ -3,7 +3,9 @@ package sample.Controllers;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.fxmisc.richtext.CodeArea;
@@ -21,7 +23,7 @@ import static  sample.Constants.Configs.*;
 
 public class Controller extends Application{
 private Stage stage;
-@FXML private Pane PaneCod;
+@FXML private HBox PaneCod;
 
 
     private static final String sampleCode = String.join("\n", new String[] {
@@ -58,7 +60,7 @@ private Stage stage;
             .subscribe(ignore -> codeArea.setStyleSpans(0, computeHighlighting(codeArea.getText())));
 
 
-
+HBox.setHgrow(codeArea, Priority.ALWAYS);
     PaneCod.getChildren().add(codeArea);
 }//llave load
 public void evtsalir(ActionEvent event){

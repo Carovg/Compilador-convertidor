@@ -11,16 +11,10 @@ import java.util.regex.Pattern;
 public final class Configs {
     public static final String Username="";
     public static final String[] KEYWORDS = new String[] {
-            "abstract", "assert", "boolean", "break", "byte",
-            "case", "catch", "char", "class", "const",
-            "continue", "default", "do", "double", "else",
-            "enum", "extends", "final", "finally", "float",
-            "for", "goto", "if", "implements", "import",
-            "instanceof", "int", "interface", "long", "native",
-            "new", "package", "public", "protected", "public",
-            "return", "short", "static", "strictfp", "super",
-            "switch", "synchronized", "this", "throw", "throws",
-            "transient", "try", "void", "volatile", "while"
+      "abstracto","booleano","Quebrar","dato","EnCaso","Cachar","Char","Clase","coon","Continuar",
+            "Defecto","prueba","doble","ademas","extender","Fiin","Flott","Para","Si","Implementar",
+            "Ent","Nuevo","paquete","privado","protegido","publico","regresar","Corto","static","cambiar",
+            "Estt","lanzar","Intento", "void","Mientras"
     };
 
     public static final String KEYWORD_PATTERN = "\\b(" + String.join("|", KEYWORDS) + ")\\b";
