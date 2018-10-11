@@ -34,7 +34,7 @@
                 </Menu>
                   <Menu mnemonicParsing="false" text="Ejecutar">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                      <MenuItem mnemonicParsing="false" onAction="#ejecutar" text="Ejecutar" />
                     </items>
                   </Menu>
                 <Menu mnemonicParsing="false" text="Ayuda">
@@ -53,7 +53,7 @@
                               <VBox layoutY="-2.0" prefHeight="551.0" prefWidth="826.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="-2.0">
                                  <children>
                                     <HBox fx:id="PaneCod" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                                    <TextArea prefHeight="207.0" prefWidth="826.0" />
+                                    <TextArea fx:id="txtconsola" prefHeight="207.0" prefWidth="826.0" />
                                  </children>
                               </VBox>
                            </children>
