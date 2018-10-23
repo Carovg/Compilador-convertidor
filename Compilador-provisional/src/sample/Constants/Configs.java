@@ -9,12 +9,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class Configs {
-    public static final String Username="";
-    public static final String[] KEYWORDS = new String[] {
-      "abstracto","booleano","Quebrar","dato","EnCaso","Cachar","Char","Clase","coon","Continuar",
-            "Defecto","prueba","doble","ademas","extender","Fiin","Flott","Para","Si","Implementar",
-            "Ent","Nuevo","paquete","privado","protegido","publico","regresar","Corto","static","cambiar",
-            "Estt","lanzar","Intento", "void","Mientras"
+public static final String UserName="";
+    public static final String[] KEYWORDS = new String[]{
+    "abstracto","booleano","quebrar","dato","EnCaso","Cachar","char",
+            "Clase","coon","Continuar","Defecto","prueba","doble","ademas",
+            "extender","Fiin","Flott","Si","Implementar","Importar","Ent",
+            "Nuevo","paquete","privado","protegido","publico","regresar",
+            "Corto","static","cambiar","Estt","lanzar","intento","void",
+            "Mientras","Convertir", "a"
     };
 
     public static final String KEYWORD_PATTERN = "\\b(" + String.join("|", KEYWORDS) + ")\\b";
@@ -35,8 +37,11 @@ public final class Configs {
                     + "|(?<COMMENT>" + COMMENT_PATTERN + ")"
     );
 
+    public static final String sampleCode = String.join("\n", new String[]{
+        "Tipo de dato:"
+    });
 
-    public static StyleSpans<Collection<String>> computeHighlighting(String text) {
+   public static StyleSpans<Collection<String>> computeHighlighting(String text) {
         Matcher matcher = PATTERN.matcher(text);
         int lastKwEnd = 0;
         StyleSpansBuilder<Collection<String>> spansBuilder
@@ -59,6 +64,14 @@ public final class Configs {
         return spansBuilder.create();
     }
     public static String[] EXPRESIONES={
-            "[A-Za-z]{2}",
+           "Tipo de dato: Binario (\\d+)?[A-Za-z][\\w+]*[=][0-1]{1,}",
+            "Tipo de dato: Decimal (\\d+)?[A-Za-z][\\w+]*[=]\\d{1,}",
+            "Tipo de dato: Hexadecimal (\\d+)?[A-Za-z][\\w+]*[=][A-Fa-f0-9]{1,}",
+            "Tipo de dato: Octal (\\d+)?[A-Za-z][\\w+]*[=][0-7]{1,}",
+            "Tipo de dato: Resultado (\\d+)?[A-Za-z][\\w+]",
+            "(\\d+)?[A-Za-z][\\w+]*[=]Convertir (\\d+)?[A-Za-z][\\w+]* a (\\d+)?[A-Za-z][\\w+]*",
+            "(\\d+)?[A-Za-z][\\w+]*.mostrar"
     };
+
+
 }

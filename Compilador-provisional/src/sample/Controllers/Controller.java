@@ -22,86 +22,80 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import static sample.Constants.Configs.*;
+public class Controller extends Application {
+    private Stage stage;
+    @FXML
+    private HBox paneSote;
 
-import static  sample.Constants.Configs.*;
-
-public class Controller extends Application{
-private Stage stage;
-@FXML private HBox PaneCod;
+    CodeArea codeArea = new CodeArea();
 @FXML TextArea txtconsola;
 
-
-    private static final String sampleCode = String.join("\n", new String[] {
-            "package com.example;",
-            "",
-            "import java.util.*;",
-            "",
-            "public class Foo extends Bar implements Baz {",
-            "",
-            "    /*",
-            "     * multi-line comment",
-            "     */",
-            "    public static void main(String[] args) {",
-            "        // single-line comment",
-            "        for(String arg: args) {",
-            "            if(arg.length() != 0)",
-            "                System.out.println(arg);",
-            "            else",
-            "                System.err.println(\"Warning: empty string as argument\");",
-            "        }",
-            "    }",
-            "",
-            "}"
-    });
-    CodeArea codeArea = new CodeArea();
-@FXML protected void initialize(){
-    // add line numbers to the left of area
-    codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
-    codeArea.replaceText(0, 0, sampleCode);
-    codeArea.setPrefSize(1000,500);
-    Subscription cleanupWhenNoLongerNeedIt = codeArea
-            .multiPlainChanges()
-            .successionEnds(Duration.ofMillis(500))
-            .subscribe(ignore -> codeArea.setStyleSpans(0, computeHighlighting(codeArea.getText())));
+    @FXML
+    protected void initialize() {
+        // add line numbers to the left of area
+        codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
+        codeArea.setPrefSize(950, 400);
+        codeArea.replaceText(0, 0, sampleCode);
+        Subscription cleanupWhenNoLongerNeedIt = codeArea
+                .multiPlainChanges()
+                .successionEnds(Duration.ofMillis(500))
+                .subscribe(ignore -> codeArea.setStyleSpans(0, computeHighlighting(codeArea.getText())));
+        HBox.setHgrow(codeArea, Priority.ALWAYS);
+        paneSote.getChildren().add(codeArea);
+    }//load
 
 
-HBox.setHgrow(codeArea, Priority.ALWAYS);
-    PaneCod.getChildren().add(codeArea);
-}//llave load
-public void evtsalir(ActionEvent event){
-    System.exit(0);
-}
-public void evtabrir(ActionEvent event){
-    FileChooser of=new FileChooser();
-    of.setTitle("Abrir archivo Compiler");
-    FileChooser.ExtensionFilter filtro=new FileChooser.ExtensionFilter("Archivos.ac","*.ac");
-    of.getExtensionFilters().add(filtro);
-    File file=of.showOpenDialog(stage);
-}
+    public void evtsalir(ActionEvent event) {
+        System.exit(0);
+    }
+
+    public void evtabrir(ActionEvent event) {
+        FileChooser of = new FileChooser();
+        of.setTitle("Abrir archivo Compiler");
+        FileChooser.ExtensionFilter filtro = new FileChooser.ExtensionFilter("Archivos.ac", "*.ac");
+        of.getExtensionFilters().add(filtro);
+        File file = of.showOpenDialog(stage);
+    }
 
 
     @Override
     public void start(Stage stage) throws Exception {
-        this.stage=stage;
+        this.stage = stage;
     }
-public void ejecutar (ActionEvent event){
+
+public void ejecutar(ActionEvent event){
+
 compilar();
+
 }//llave ejecutar
+
 public void compilar(){
-    txtconsola.setText("");
-    long tinicial= System.currentTimeMillis();
-    String texto=codeArea.getText();
-    String[] renglones=texto.split("\\n");
-    for( int x=0; x<renglones.length;x++){
-        for(int y=0;y< Configs.EXPRESIONES.length;y++) {
-            Pattern patron = Pattern.compile(Configs.EXPRESIONES[y]);
-            Matcher matcher=patron.matcher(renglones[x]);
-            if(!matcher.matches()){
-                txtconsola.setText(txtconsola.getText()+"\n"+ "Error de sintaxis en la linea"+ (x+1));
-        }//llave if
-        }//llave for y
-    }//llave for
+        txtconsola.setText("");
+        long tinicial=System.currentTimeMillis();
+        String texto=codeArea.getText();
+        String[] renglones=texto.split("\\n");
+
+        for(int x=0;x<renglones.length; x++){
+            boolean bandera=false;
+            if(!renglones[x].trim().equals("")){
+
+                for(int y=0;y< Configs.EXPRESIONES.length && bandera==false;y++){
+                    Pattern patron=Pattern.compile(Configs.EXPRESIONES[y]);
+                    Matcher matcher=patron.matcher(renglones[x]);
+                    if(matcher.matches()){
+                        bandera=true;
+                    }
+                }//llave for y
+                if(bandera==false){
+                    txtconsola.setText(txtconsola.getText()+ " \n "+ "Error de sintaxis en la linea" +(x+1));
+                }
+
+            }
+
+        }//llave for x}
     long tfinal=System.currentTimeMillis()-tinicial;
-    txtconsola.setText(txtconsola.getText()+"\n"+"Compilado en : " +tfinal +" milisegundos");
-}
+        txtconsola.setText(txtconsola.getText()+"\n"+"Compilado en : " + tfinal + " milisegundos ");
+}//llave compilar
+
 }
