@@ -71,6 +71,8 @@ public static final String UserName="";
             "Tipo de dato: Resultado (\\d+)?[A-Za-z][\\w+]",
             "(\\d+)?[A-Za-z][\\w+]*[=]Convertir (\\d+)?[A-Za-z][\\w+]* a (\\d+)?[A-Za-z][\\w+]*",
             "(\\d+)?[A-Za-z][\\w+]*.mostrar"
+            "(\\/\\/)|(\\/\\/((\\w\\s+)+|(\\w+))(\\w|\\w+\\s+))$"
+
     };
 
 
